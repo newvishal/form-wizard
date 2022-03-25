@@ -1,0 +1,22 @@
+<div class="form-page-container"> 
+    <app-steps></app-steps>
+    <div class="step-page-container">
+        <div class="form-step">
+            <ng-container [ngSwitch]="(currentSetup | async)?.setupIndex">
+                <div *ngSwitchCase="'1'">
+                    <app-step-template [step]="(currentSetup | async)"></app-step-template>
+                </div>
+                <div *ngSwitchCase="'2'">
+                    <app-step-template [step]="(currentSetup | async)"></app-step-template>
+                </div>
+                <div *ngSwitchCase="'3'">
+                    <app-step-template [step]="(currentSetup | async)"></app-step-template>
+                </div>
+            </ng-container>
+            
+        </div>
+    </div>
+    <button (click)="onNextStep()" [disabled]="!(currentSetup | async)?.isComplete" class="form-continue-btn">
+        {{showButtonLabel()}}
+    </button>
+</div>
